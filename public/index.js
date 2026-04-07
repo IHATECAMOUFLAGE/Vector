@@ -30,6 +30,14 @@ const scramjet = new ScramjetController({
 	},
 });
 
+function proxyNavigate(url) {
+	const proxied = search(url, searchEngine.value);
+	const frame = scramjet.createFrame();
+	frame.frame.id = "sj-frame";
+	document.body.appendChild(frame.frame);
+	frame.go(proxied);
+}
+
 scramjet.init();
 
 const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
